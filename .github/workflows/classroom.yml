@@ -1,0 +1,50 @@
+name: GitHub Classroom
+
+on: [ workflow_dispatch ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: RelWithDebInfo
+
+jobs:
+  build:
+    name: Auto-grading
+    runs-on: ubuntu-20.04
+    steps:
+      # See more https://github.com/actions/checkout.
+      - uses: actions/checkout@v2
+        with: { submodules: 'recursive', fetch-depth: 0 }
+
+      - name: Create Build Environment
+        run: cmake -E make_directory ${{github.workspace}}/build
+
+      - name: Configure CMake
+        shell: bash
+        working-directory: ${{github.workspace}}/build
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+
+      - name: Build
+        shell: bash
+        working-directory: ${{github.workspace}}/build
+        run: cmake --build . --config $BUILD_TYPE
+
+      # Run an auto-grading job.
+      - uses: education/autograding@v1
+        continue-on-error: true
+        id: autograder
+
+      # Add the badge with the current student's score.
+      - run: git checkout badges || git checkout -b badges
+      - uses: markpatterson27/points-bar@v1
+        with:
+          points: ${{ steps.autograder.outputs.points }}
+          path: '.github/badges/points-bar.svg'
+          type: badge
+          label: 'Score'
+
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add '.github/badges/points-bar.svg'
+          git commit -m "Add/Update points bar" || exit 0
+          git push origin badges
