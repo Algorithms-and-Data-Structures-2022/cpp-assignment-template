@@ -43,4 +43,4 @@
 
 ---
 
-**Преподаватель**: Рамиль Сафин (Telegram: [_@safin_ramil_](https://t.me/safin_ramil)).
+**Преподаватель**: Рамиль Сафин (Telegram: [_@safin_ramil_](https://t.me/safin_ramil), e-mail: _safin.ramil@it.kfu.ru_).
