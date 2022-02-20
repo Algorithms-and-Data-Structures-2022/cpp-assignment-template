@@ -19,6 +19,16 @@
       "comparison": "included",
       "timeout": 1,
       "points": 1
+    },
+    {
+      "name": "Failing test-case",
+      "setup": "",
+      "run": "ctest -VVV --output-on-failure --test-dir build -R \"Failing test-case\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 1
     }
   ]
 }
