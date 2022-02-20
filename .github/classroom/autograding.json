@@ -13,7 +13,7 @@
     {
       "name": "Passing test-case",
       "setup": "",
-      "run": "ctest -VV --output-on-failure --test-dir build -R \"Passing test-case\"",
+      "run": "ctest -VVV --output-on-failure --test-dir build -R \"Passing test-case\"",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -23,7 +23,7 @@
     {
       "name": "Failing test-case",
       "setup": "",
-      "run": "ctest -VV --output-on-failure --test-dir build -R \"Failing test-case\"",
+      "run": "ctest -VVV --output-on-failure --test-dir build -R \"Failing test-case\"",
       "input": "",
       "output": "",
       "comparison": "included",
