@@ -3,11 +3,12 @@ name: Check Memory Leaks
 on: [ workflow_dispatch ]
 
 env:
+  # Memory check requires Debug builds.
   BUILD_TYPE: Debug
 
 jobs:
   build:
-    name: Check memory leakage
+    name: Check Memory Leakage
     runs-on: ubuntu-20.04
     steps:
       # See more https://github.com/actions/checkout.
@@ -23,14 +24,14 @@ jobs:
       - name: Configure CMake
         shell: bash
         working-directory: ${{github.workspace}}/build
-        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DENABLE_MEMCHECK=ON
 
       - name: Build
         shell: bash
         working-directory: ${{github.workspace}}/build
         run: cmake --build . --config $BUILD_TYPE
 
-      - name: Run CTest with memcheck
+      - name: Run CTest with MemCheck
         working-directory: ${{github.workspace}}/build
         shell: bash
         # See more https://cmake.org/cmake/help/latest/manual/ctest.1.html.
