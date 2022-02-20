@@ -17,7 +17,7 @@ include(cmake/CompilerWarnings.cmake)
 # Options
 option(BUILD_TESTS "Build assignment tests." ON)
 option(ENABLE_COMPILER_WARNINGS "Project compile warnings." ON)
-option(ENABLE_MEMCHECK "Configure project for memory checking." ON)
+option(ENABLE_MEMCHECK "Configure project for memory checking." OFF)
 
 cmake_print_variables(CMAKE_BUILD_TYPE BUILD_TESTS ENABLE_COMPILER_WARNINGS ENABLE_MEMCHECK)
 
