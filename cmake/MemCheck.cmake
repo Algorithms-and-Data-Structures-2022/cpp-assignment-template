@@ -7,7 +7,7 @@ function(enable_memcheck)
             message(STATUS "MemoryCheck: enabled")
 
             # See https://valgrind.org/docs/manual/manual.html
-            add_compile_options("-g; -fno-inline; -fno-inline-small-functions")
+            add_compile_options(-g -fno-inline -fno-inline-small-functions)
         else (build_type STREQUAL "debug")
             message(FATAL_ERROR "MemoryCheck: disabled.\nReason: Expected debug build type, got ${CMAKE_BUILD_TYPE}.")
         endif (build_type STREQUAL "debug")
