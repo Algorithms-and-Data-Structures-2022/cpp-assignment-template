@@ -12,8 +12,8 @@
     },
     {
       "name": "Passing test-case",
-      "setup": "cd build",
-      "run": "ctest -VVV --output-on-failure -R \"Passing test-case\"",
+      "setup": "",
+      "run": "ctest -VVV --output-on-failure --test-dir build -R \"Passing test-case\"",
       "input": "",
       "output": "",
       "comparison": "included",
