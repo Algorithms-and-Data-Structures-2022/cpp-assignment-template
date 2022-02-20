@@ -35,6 +35,6 @@ jobs:
         working-directory: ${{github.workspace}}/build
         shell: bash
         # See more https://cmake.org/cmake/help/latest/manual/ctest.1.html.
-        run: |
-          ctest -VVV -C $BUILD_TYPE -D ExperimentalMemCheck \ 
+        run: >
+          ctest -VVV -C $BUILD_TYPE -D ExperimentalMemCheck 
           --overwrite MemoryCheckCommandOptions="--leak-check=full --error-exitcode=100"
