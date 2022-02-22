@@ -1,9 +1,9 @@
 include(CTest)
 
-set(TARGET_NAME run_all_tests)
+set(TARGET_NAME run_tests)
 
 # Executable
-add_executable(${TARGET_NAME} run_all_tests.cpp)
+add_executable(${TARGET_NAME} run_tests.cpp)
 target_sources(${TARGET_NAME} PRIVATE passing_tests.cpp failing_tests.cpp memcheck_tests.cpp)
 
 # Catch2

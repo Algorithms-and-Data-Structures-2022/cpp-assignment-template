@@ -6,7 +6,7 @@
       "run": "echo \"Success! You got 1 point!\"",
       "input": "",
       "output": "",
-      "comparison": "included",
+      "comparison": "exact",
       "timeout": 1,
       "points": 1
     },
@@ -16,7 +16,7 @@
       "run": "ctest -VVV --output-on-failure --test-dir build -R \"Passing test-case\"",
       "input": "",
       "output": "",
-      "comparison": "included",
+      "comparison": "exact",
       "timeout": 1,
       "points": 1
     },
@@ -26,7 +26,17 @@
       "run": "ctest -VVV --output-on-failure --test-dir build -R \"Failing test-case\"",
       "input": "",
       "output": "",
-      "comparison": "included",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Run I/O tests",
+      "setup": "",
+      "run": "cd build/io_tests && ./run_io_tests",
+      "input": "1\n2\n3",
+      "output": "1\n4\n9",
+      "comparison": "exact",
       "timeout": 1,
       "points": 1
     }
