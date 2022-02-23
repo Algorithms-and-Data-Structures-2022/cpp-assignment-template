@@ -1,15 +1,25 @@
+# For details refer https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions.
 name: GitHub Classroom
 
-on: [ workflow_dispatch ]
+on:
+  workflow_dispatch:
+  push:
+    branches: [ 'master', 'main' ]
+    paths: [ 'src/**', 'include/**' ]
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: RelWithDebInfo
+  BUILD_TYPE: Release
+
+defaults:
+  run: { shell: bash }
 
 jobs:
-  build:
+  auto-grading:
     name: Auto-grading
     runs-on: ubuntu-20.04
+    container:
+      image: gcc:11.2.0-bullseye
     steps:
       # See more https://github.com/actions/checkout.
       - uses: actions/checkout@v2
@@ -19,12 +29,10 @@ jobs:
         run: cmake -E make_directory ${{github.workspace}}/build
 
       - name: Configure CMake
-        shell: bash
         working-directory: ${{github.workspace}}/build
         run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
       - name: Build
-        shell: bash
         working-directory: ${{github.workspace}}/build
         run: cmake --build . --config $BUILD_TYPE
 
