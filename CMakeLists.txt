@@ -48,11 +48,6 @@ endif (ENABLE_MEMCHECK)
 # Tests
 if (BUILD_TESTS)
     enable_testing()
-
-    # unit tests
     add_subdirectory(contrib)
     add_subdirectory(tests)
-
-    # I/O tests
-    add_subdirectory(io_tests)
 endif (BUILD_TESTS)

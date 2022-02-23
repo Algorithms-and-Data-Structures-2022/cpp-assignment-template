@@ -29,16 +29,6 @@
       "comparison": "exact",
       "timeout": 1,
       "points": 1
-    },
-    {
-      "name": "Run I/O tests",
-      "setup": "",
-      "run": "cd build/io_tests && ./run_io_tests",
-      "input": "1\n2\n3",
-      "output": "1\n4\n9",
-      "comparison": "exact",
-      "timeout": 1,
-      "points": 1
     }
   ]
 }
