@@ -38,7 +38,7 @@
   - auto-grading тесты запускаются на GitHub и вычисляют итоговый балл за задание.
 - При клонировании репозитория через терминал используйте команду: 
   ```shell
-    git clone -j2 --recurse-submodules <URL>
+    git clone --recurse-submodules <URL>
   ```
 
 ---
