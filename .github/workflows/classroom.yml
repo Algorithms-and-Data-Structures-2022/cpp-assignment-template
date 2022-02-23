@@ -18,8 +18,6 @@ jobs:
   auto-grading:
     name: Auto-grading
     runs-on: ubuntu-20.04
-    container:
-      image: gcc:11.2.0-bullseye
     steps:
       # See more https://github.com/actions/checkout.
       - uses: actions/checkout@v2
