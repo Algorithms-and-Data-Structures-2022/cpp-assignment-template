@@ -8,19 +8,19 @@ on:
     paths: [ 'src/**', 'include/**' ]
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  # CMake build type: Release, Debug, RelWithDebInfo, etc.
   BUILD_TYPE: Release
 
 defaults:
   run: { shell: bash }
 
 jobs:
-  auto-grading:
-    name: Auto-grading
+  autograding:
+    name: Autograding
     runs-on: ubuntu-20.04
     steps:
-      # See more https://github.com/actions/checkout.
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with: { submodules: 'recursive', fetch-depth: 0 }
 
       - name: Create Build Environment
@@ -30,25 +30,29 @@ jobs:
         working-directory: ${{github.workspace}}/build
         run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
-      - name: Build
+      - name: CMake Build
         working-directory: ${{github.workspace}}/build
         run: cmake --build . --config $BUILD_TYPE
 
-      # Run an auto-grading job.
-      - uses: education/autograding@v1
+      - name: GitHub Autograding
+        uses: education/autograding@v1
         continue-on-error: true
         id: autograder
 
       # Add the badge with the current student's score.
-      - run: git checkout badges || git checkout -b badges
-      - uses: markpatterson27/points-bar@v1
+      - name: Checkout badges branch
+        run: git checkout badges || git checkout -b badges
+
+      - name: Generate badge with a score
+        uses: markpatterson27/points-bar@v1
         with:
           points: ${{ steps.autograder.outputs.points }}
           path: '.github/badges/points-bar.svg'
-          type: badge
           label: 'Score'
+          type: badge
 
-      - run: |
+      - name: Update badge with a score
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add '.github/badges/points-bar.svg'
