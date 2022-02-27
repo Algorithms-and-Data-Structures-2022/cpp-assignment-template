@@ -22,7 +22,16 @@ option(ENABLE_MEMCHECK "Configure project for memory checking." OFF)
 cmake_print_variables(CMAKE_BUILD_TYPE BUILD_TESTS ENABLE_COMPILER_WARNINGS ENABLE_MEMCHECK)
 
 # Library
-add_library(${PROJECT_NAME} STATIC src/code.cpp include/assignment/code.hpp)
+add_library(${PROJECT_NAME} STATIC include/assignment/code.hpp)
+
+if (EXISTS ${PROJECT_SOURCE_DIR}/src/code_solution.cpp)
+    message(STATUS "Using solution code: yes")
+    target_sources(${PROJECT_NAME} PRIVATE src/code_solution.cpp)
+else ()
+    message(STATUS "Using solution code: no")
+    target_sources(${PROJECT_NAME} PRIVATE src/code.cpp)
+endif ()
+
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 # Executables
