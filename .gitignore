@@ -11,3 +11,6 @@ build*
 # Compiled Dynamic librarires
 *.so
 *.dll
+
+# Solutions
+*solution.cpp
