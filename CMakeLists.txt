@@ -42,10 +42,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC include)
 add_executable(run_${PROJECT_NAME} main.cpp)
 target_link_libraries(run_${PROJECT_NAME} PRIVATE ${PROJECT_NAME})
 
-# Executables
-add_executable(run_${PROJECT_NAME} main.cpp)
-target_link_libraries(run_${PROJECT_NAME} PRIVATE ${PROJECT_NAME})
-
 # Warnings
 if (ENABLE_COMPILER_WARNINGS)
     message(STATUS "Compiler warnings: enabled")
